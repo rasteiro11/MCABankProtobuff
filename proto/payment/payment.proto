@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package mcabank.balance;
+
+option go_package = "proto/payment";
+
+service BalanceService {
+  rpc GetBalances(GetBalancesRequest) returns (GetBalancesResponse);
+  rpc CreateBalance(CreateBalanceRequest) returns (CreateBalanceResponse);
+}
+
+message Balance {
+  uint32 id = 1;
+  uint32 customer_id = 2;
+  double balance = 3;
+  double blocked_balance = 4;
+}
+
+message GetBalancesRequest {
+  repeated uint32 customer_ids = 1;
+}
+
+message GetBalancesResponse {
+  repeated Balance balances = 1;
+}
+
+message CreateBalanceRequest {
+  uint32 customer_id = 1;
+}
+
+message CreateBalanceResponse {
+  Balance balance = 1;
+}
+
