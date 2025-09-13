@@ -21,8 +21,6 @@ message DepositRequest {
 }
 
 message DepositResponse {
-  uint32 customer_id = 1;
-  double new_balance = 2;
 }
 
 message TransferRequest {
