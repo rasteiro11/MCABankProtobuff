@@ -9,6 +9,31 @@ service BalanceService {
   rpc CreateBalance(CreateBalanceRequest) returns (CreateBalanceResponse);
 }
 
+service PaymentService {
+  rpc Deposit(DepositRequest) returns (DepositResponse);
+  rpc Transfer(TransferRequest) returns (TransferResponse);
+}
+
+message DepositRequest {
+  uint32 customer_id = 1;
+  double amount = 2;
+  string idempotency_key = 3;
+}
+
+message DepositResponse {
+  uint32 customer_id = 1;
+  double new_balance = 2;
+}
+
+message TransferRequest {
+  uint32 customer_id = 1;
+  double amount = 3;
+  string idempotency_key = 4;
+}
+
+message TransferResponse {
+}
+
 message Balance {
   uint32 id = 1;
   uint32 customer_id = 2;
